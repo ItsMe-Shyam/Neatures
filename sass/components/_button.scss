@@ -1,0 +1,93 @@
+
+.btn {
+    &,
+    &:visited,
+    &:link {
+        display: inline-block;
+        font-size: 1.2rem;
+        text-decoration: none;
+        padding: 0.8rem 1.5rem;
+        font-weight: 400;
+        // border: none;
+        border-radius: 5rem;
+        margin-top: 6rem;
+        position: relative;
+    }
+    &:hover {
+    
+        box-shadow: 0 0.8rem 1.5rem rgba($color-black, 0.5);
+        transform: translateY(-0.2rem);
+
+        &::after {
+            transform: scaleX(1.5) scaleY(1.5);
+            opacity: 0;
+        }
+    }
+
+    &:active, &:focus {
+        outline: none;
+        box-shadow: 0 0.3rem 1rem rgba($color-black, 0.5);
+        transform: translateY(-1px);
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-black;
+    
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+        border: none;
+    
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+
+    &--animated {
+        animation: toButton 0.5s ease-out 0.5s;
+        animation-fill-mode: backwards;
+    
+    }
+    &::after {
+
+        content: "";
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 5rem;
+        transition: all 0.4s;
+    }
+}
+
+.btn-secondary {
+    &:link,&:visited {
+        display: inline-block;
+        color: $color-primary-light;
+        border-bottom: 1px solid $color-primary-dark;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        border-radius: 3px;
+        transition: all .2s;
+    }
+    &:hover {
+        color: white;
+        background-color: $color-primary-dark;
+        transform: translateY(-2px);
+        box-shadow: 0 1rem .8rem rgba($color-black, 0.2);    
+    }
+
+    &:active {
+        transform: translateY(-2px);
+        box-shadow: 0 .5rem .8rem rgba($color-black, .5); 
+    }
+}

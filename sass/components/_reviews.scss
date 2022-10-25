@@ -1,0 +1,74 @@
+
+.review-box {
+    width: 75%;
+    background: rgba($color-white, .6);
+    margin: 3rem auto;
+    box-shadow: 0 2rem 4rem rgba($color-black, .1);
+    padding: 6rem;
+    font-size: $default-font-size;
+    transform:  skewX(-12deg);
+
+    @include respond(phone) {
+        transform: skewX(0deg);
+        width: 60%;
+    margin: 1rem auto;
+
+
+    }
+
+    &__inner {
+        transform: skewX(12deg);
+
+        @include respond(phone) {
+            transform: skewX(0deg);
+        }
+    }
+
+    &__profile {
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        clip-path: circle(50% at 50% 50%);
+        /* this 'shape-outside' property is fucking demanding bro, it needs the element to be floated and must have a  
+        height and weight then only this will work...  */
+        shape-outside: circle(50% at 50% 50%);
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        background-color: orangered;
+        /* As the element is floated the best way to move it is using transform property, we should not mess with its margin and all */ 
+        transform: translateX(-2rem);
+        position: relative;
+    }
+
+    &__img {
+        height: 100%;
+        transform: translateX(-4rem) scale(1.3);
+        transition: all .3s;
+        backface-visibility: hidden; // this property fixes any glitch that is unexpected.....
+    }
+
+    &__caption {
+        color: white;
+        width: 2rem;
+        height: 3rem;
+        position: absolute;
+        top: 65%;
+        left: 40%;
+        transform: translate(50% 50%);
+        opacity: 0;
+        transition: all .3s;
+        backface-visibility: hidden;
+
+    }
+
+    &__profile:hover &__caption {
+        opacity: 1;
+        transform: translateY(-4rem);
+    }
+    &__profile:hover &__img {
+        transform: translateX(-4rem) scale(1.1);
+        filter: blur(3px) brightness(80%);
+    }
+
+
+
+}

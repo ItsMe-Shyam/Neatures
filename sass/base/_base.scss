@@ -1,0 +1,49 @@
+*,
+*::after,
+*::before {
+
+    padding: 0;
+    margin: 0;
+
+}                               
+html {  
+    scroll-behavior: smooth;
+
+    // this "font-size" determines the value of 1rem 
+    // default 1rem is equal to 16px 
+    font-size: 62.5%;  // if we want 1rem = 10px then, 10/16 * 100 => 62.5%
+    // scroll-behavior: smooth;
+
+    @include respond(phone) {
+        font-size: 37.5%;  // 1rem = 6px; 6/16 * 100 => 37.5%
+    }
+    @include respond(tab-port) {
+        font-size: 50%;  // 1rem  = 8px; 8/16 * 100 => 50%
+    }
+    @include respond(tab-land) {
+        font-size: 56.25%;  // 1rem  = 9px; 9/16 * 100 => 56.5%
+    }
+    @include respond(big-screen) {
+        font-size: 75%;  // 1rem = 12px; 12/16 * 100 => 75%
+    }
+}
+
+body {
+    padding: 3rem;
+    font-family: "lato", sans-sarif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #777;
+    position: relative;
+    box-sizing: border-box;
+
+    @include respond(tab-port) {
+        padding: 0;
+    } 
+}
+
+::selection {
+    color: white;
+    background-color: $color-primary;
+}

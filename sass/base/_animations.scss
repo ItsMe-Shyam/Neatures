@@ -1,0 +1,59 @@
+@keyframes toButton {
+    0% {
+        opacity: 0;
+        transform: translateY(4rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+@keyframes toRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+    80% {
+        opacity: 0.7;
+        transform: translateX(1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes toLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    80% {
+        opacity: 0.7;
+        transform: translateX(-1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes blurred {
+    0% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0.7;
+    
+    }
+    100% {
+        opacity: 1;
+    
+    }
+}

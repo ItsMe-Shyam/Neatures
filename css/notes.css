@@ -1,0 +1,213 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+/* here we are reseting default properties by using universal selector(*) that were added by the browser by default */
+*, *::after, *::before {  /* include 'after' and 'before' pseudo elements also [ just a standard way you know] */
+    padding: 0;
+    margin:0;
+    box-sizing: inherit;  /* inherited from 'body' element... it is just a standard way of using box-sizing  */
+}
+                               /*      *** IMPORTANT ***          */
+                      /* This is an amazing/best trick for building responsive design... 
+            We set the font-size of the html element and use 'rem' as the unit instead of 'px' everywhere...
+                              because 'rem' uses root element as a reference 
+                                 this reduces alot of @media query code  */
+html {
+
+     /* this 10px sets an absolute value which browser cannot change so to prevent that we use '%' notation
+     here we need 10px as a value but default value is 16px set by the browser so to we do [10/16 * 100 ] which is 62.5%
+     we do this so that the user can change the font-size to whatever they want [simply that it is more user friendly]  */
+    font-size: 62.5%;  
+}
+
+body {
+    margin: 30px;
+    font-family: 'lato', sans-sarif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #777;
+    position: relative;
+    box-sizing: border-box;
+
+}
+
+.header {
+    height: 95vh;
+    background-image: linear-gradient(to right, rgba(126, 213, 111, 0.822), rgba(40, 180, 133, 0.808)), url(../img/hero.jpg);
+    background-position: top;
+    background-size: cover;
+/* polygon arguments starts from top left corner which is the origin and goes clockwise, top left to top right is x axis and and top left to bottom left is Y axis...  */
+    clip-path: polygon( 0 0, 100% 0, 100% 70vh, 0 100%);
+}
+
+.header__logo-box {
+    /* here the position is inherited from body because body has position relative and absolute uses the parent's position as a reference...... */
+    position: absolute;
+    top: 4rem;
+    animation: blurred 1s ease-out;
+    left: 4rem;
+
+}
+
+.header__logo {
+           /* we should set the height and the width will automatically be set by the browser...  */
+    height: 4rem;
+}
+.primary-header--sub {
+    display: block;
+    font-size: 1.5rem;
+    letter-spacing: 2rem;
+    animation: toLeft 1s ease-out;
+}
+.primary-header--main {
+    display: block;
+    font-size: 4rem;
+    letter-spacing: 3.5rem;
+    font-weight: 700;
+    animation: toRight 1s ease-out;
+}
+.primary-header {
+    /* display: flex; */
+    /* the bottom 4 lines are used to center an element to the screen */
+    position: absolute;
+    top:40%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+@keyframes toRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+    80% {
+        opacity: 0.7;
+        transform: translateX(1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes toLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    80% {
+        opacity: 0.7;
+        transform: translateX(-1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes blurred {
+    0% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0.7;
+        /* transform: translateX(-10px); */
+    }
+    100% {
+        opacity: 1;
+        /* transform: translateX(0); */
+    }
+}
+
+
+.btn:visited, .btn:link {
+    display: inline-block;
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: .8rem 1.5rem;
+    font-weight: 400;
+    border-radius: 5rem;
+    margin-top: 6rem;
+    position: relative;
+
+}
+
+.btn--white {
+    background-color: white;
+    color: black;
+}
+
+.btn:hover {
+    /* box-shadow: left&right bottom blur color  */
+    box-shadow: 0 .8rem 1.5rem rgba(0,0,0,0.5);
+    transform: translateY(-.2rem);
+}
+
+.btn:active {
+    box-shadow: 0 .3rem 1rem rgba(0,0,0,0.5);
+    transform: translateY(-1px);
+}
+
+
+@keyframes toButton {
+    0% {
+        opacity: 0;
+        transform: translateY(4rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn--animated {
+    animation: toButton .5s ease-out 0.5s;
+    /* animation-fill-mode backwards makes the animation to start from 0% state ... */
+    animation-fill-mode: backwards;
+    /* animation-delay: 1s; */
+}
+
+/*        ' after' pseudo element is treated as the child of the element, 
+here btn is the parent so height and width of 100% means it is 100% of its parent element
+        so here we are creating a duplicate of btn BELOW and hide it behind btn ... */
+
+.btn::after {
+    /* the content and display property is necessary to be set otherwise it will not work... */
+    content: ""; 
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    /* as we want to place this element to be placed behind the btn element,
+     we set it to be absolute and btn element's position to be relative..... */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 5rem;
+    transition: all .4s;
+
+}
+ /* here we want the 'after' pseudo element to be white, so we are creating another pseudo element with white as the bckgrndcolor... */
+.btn--white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.5) scaleY(1.5);
+    opacity: 0;
+}
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 50%;
+    }
+}
